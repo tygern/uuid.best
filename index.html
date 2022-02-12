@@ -1,0 +1,162 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="The best UUIDs">
+
+    <meta property="og:title" content="UUID generator">
+    <meta property="og:type" content="website">
+    <meta property="og:description" content="The best UUIDs">
+    <meta property="og:url" content="https://uuid.best">
+    <meta property="og:image" content="https://uuid.best/pika.jpg">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:domain" content="uuid.best">
+    <meta name="twitter:title" content="UUID generator">
+    <meta name="twitter:description" content="The best UUIDs">
+    <meta name="twitter:url" content="https://uuid.best">
+    <meta name="twitter:image" content="https://uuid.best/pika.jpg">
+
+    <title>UUID generator</title>
+
+    <style>
+        html, body, div, span, applet, object, iframe,
+        h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+        a, abbr, acronym, address, big, cite, code,
+        del, dfn, em, img, ins, kbd, q, s, samp,
+        small, strike, strong, sub, sup, tt, var,
+        b, u, i, center,
+        dl, dt, dd, ol, ul, li,
+        fieldset, form, label, legend,
+        table, caption, tbody, tfoot, thead, tr, th, td,
+        article, aside, canvas, details, embed,
+        figure, figcaption, footer, header, hgroup,
+        menu, nav, output, ruby, section, summary,
+        time, mark, audio, video {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            font-size: 100%;
+            font: inherit;
+            vertical-align: baseline;
+        }
+
+        /* HTML5 display-role reset for older browsers */
+        article, aside, details, figcaption, figure,
+        footer, header, hgroup, menu, nav, section {
+            display: block;
+        }
+
+        body {
+            line-height: 1;
+        }
+
+        ol, ul {
+            list-style: none;
+        }
+
+        blockquote, q {
+            quotes: none;
+        }
+
+        blockquote:before, blockquote:after,
+        q:before, q:after {
+            content: '';
+            content: none;
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+
+        :root {
+            --white: #FFFFFF;
+            --black: #222222;
+            --gray: #666666;
+        }
+
+        html {
+            font-size: 1vw;
+            box-sizing: border-box;
+        }
+
+        *, *:before, *:after {
+            box-sizing: inherit;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+            color: var(--black);
+
+            min-height: 100vh;
+            min-width: 100vw;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: min(3rem, 30px);
+        }
+
+        h1 {
+            font-size: 4.5rem;
+            font-weight: bold;
+        }
+
+        .buttons {
+            display: flex;
+            gap: min(3rem, 30px);
+        }
+
+        button {
+            border: none;
+            background: var(--black);
+            color: var(--white);
+            border-radius: .3rem;
+            padding: .75rem 1.5rem;
+
+            font-size: 2rem;
+            text-transform: uppercase;
+        }
+
+        #copy {
+            background: var(--gray);
+        }
+
+        button:active {
+            opacity: 80%;
+            transform: translate(1px);
+        }
+
+        button:focus {
+            outline: none;
+        }
+
+    </style>
+
+    <link rel="icon" type="image/png" href="favicon.svg">
+</head>
+<body>
+    <h1 id="uuid"></h1>
+    <div class="buttons">
+        <button id="generate" onclick="generate()">new</button>
+        <button id="copy" onclick="copy()">copy</button>
+    </div>
+
+    <script>
+        let generate = () => document.getElementById("uuid").innerText = crypto.randomUUID();
+        let copy = () => {
+            navigator.clipboard.writeText(document.getElementById("uuid").innerText);
+            focus()
+        };
+        let focus = () => document.getElementById("generate").focus();
+
+        generate();
+        focus();
+
+        document.getElementById("generate").focus()
+    </script>
+</body>
+</html>
