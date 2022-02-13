@@ -75,6 +75,8 @@
             --white: #FFFFFF;
             --black: #222222;
             --gray: #666666;
+
+            --green: #42842d;
         }
 
         html {
@@ -105,6 +107,9 @@
             font-weight: bold;
         }
 
+        .blink {
+            animation: flash-green .5s;
+        }
         .buttons {
             display: flex;
             gap: min(3rem, 30px);
@@ -134,6 +139,12 @@
             outline: none;
         }
 
+        @keyframes flash-green {
+            0% { color: inherit; }
+            10% { color: var(--green); }
+            100% { color: inherit; }
+        }
+
     </style>
 
     <link rel="icon" type="image/png" href="favicon.svg">
@@ -146,17 +157,20 @@
     </div>
 
     <script>
-        let generate = () => document.getElementById("uuid").innerText = crypto.randomUUID();
-        let copy = () => {
-            navigator.clipboard.writeText(document.getElementById("uuid").innerText);
-            focus()
+        const uuid = document.getElementById("uuid");
+        const generate = () => uuid.innerText = crypto.randomUUID();
+        const blinkUuidGreen = () => {
+            uuid.classList.add("blink");
+            setTimeout(() => uuid.classList.remove("blink"), 500);
         };
-        let focus = () => document.getElementById("generate").focus();
+        const copy = () => {
+            navigator.clipboard.writeText(uuid.innerText).then(blinkUuidGreen);
+            focus();
+        };
+        const focus = () => document.getElementById("generate").focus();
 
         generate();
         focus();
-
-        document.getElementById("generate").focus()
     </script>
 </body>
 </html>
