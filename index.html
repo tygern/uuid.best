@@ -168,7 +168,16 @@
             focus();
         };
         const focus = () => document.getElementById("generate").focus();
+        const handleKeypress = (e) => {
+            if (e.code === "KeyC") {
+                copy()
+            }
+            if (e.code === "KeyG") {
+                generate()
+            }
+        }
 
+        document.addEventListener('keydown', handleKeypress);
         generate();
         focus();
     </script>
