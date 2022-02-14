@@ -110,6 +110,7 @@
         .blink {
             animation: flash-green .5s;
         }
+
         .buttons {
             display: flex;
             gap: min(3rem, 30px);
@@ -158,6 +159,8 @@
 
     <script>
         const uuid = document.getElementById("uuid");
+        const generateButton = document.getElementById("generate");
+
         const generate = () => uuid.innerText = crypto.randomUUID();
         const blinkUuidGreen = () => {
             uuid.classList.add("blink");
@@ -165,21 +168,22 @@
         };
         const copy = () => {
             navigator.clipboard.writeText(uuid.innerText).then(blinkUuidGreen);
-            focus();
+            resetFocus();
         };
-        const focus = () => document.getElementById("generate").focus();
+        const resetFocus = () => generateButton.focus();
         const handleKeypress = (e) => {
             if (e.code === "KeyC") {
-                copy()
+                copy();
             }
             if (e.code === "KeyG") {
-                generate()
+                generate();
             }
         }
 
-        document.addEventListener('keydown', handleKeypress);
         generate();
-        focus();
+        resetFocus();
+
+        document.addEventListener('keydown', handleKeypress);
     </script>
 </body>
 </html>
